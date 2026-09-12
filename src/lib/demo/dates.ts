@@ -1,0 +1,3 @@
+export const CALENDAR_MIN_MONTH = "2025-01";
+export const CALENDAR_MAX_MONTH = "2025-08";
+export const CALENDAR_DEFAULT_MONTH = "2025-08";

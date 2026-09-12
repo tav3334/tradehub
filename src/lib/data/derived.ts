@@ -29,12 +29,14 @@ function buildEquityCurve(): EquityPoint[] {
   }
   const dates = Array.from(byDate.keys()).sort();
   for (const d of dates) {
-    equity += byDate.get(d)!;
+    const dayPnl = byDate.get(d)!;
+    equity += dayPnl;
     const dateObj = new Date(d);
     points.push({
       date: d,
       label: dateObj.toLocaleDateString("en-US", { month: "short", day: "numeric" }),
       equity: Math.round(equity),
+      dayPnl: Math.round(dayPnl),
     });
   }
   return points;

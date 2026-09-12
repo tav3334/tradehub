@@ -25,5 +25,5 @@ export const mainNavItems: NavItem[] = [
 
 export const utilityNavItems: NavItem[] = [
   { label: "Settings", href: "/settings", icon: Settings },
-  { label: "Help", href: "/help", icon: CircleHelp },
+  { label: "Help & Support", href: "/help", icon: CircleHelp },
 ];

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
+import { brand } from "@/lib/brand";
 import "./globals.css";
 
 const inter = Inter({
@@ -15,9 +16,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TradeHub — Trading Performance Hub",
-  description:
-    "A premium trading performance dashboard for tracking equity growth, risk metrics, and trade history.",
+  title: `${brand.productName} — ${brand.tagline}`,
+  description: brand.description,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

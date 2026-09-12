@@ -1,4 +1,5 @@
 import type { Account, Trader } from "./types";
+import { brand } from "@/lib/brand";
 import {
   averageRMultiple,
   currentBalance,
@@ -12,14 +13,16 @@ import {
 } from "./derived";
 
 export const trader: Trader = {
-  name: "Alex Morgan",
-  role: "Professional Forex & Indices Trader",
+  name: brand.trader.name,
+  role: brand.trader.role,
   location: "London, UK",
   tradingSince: 2019,
   markets: ["Forex", "Gold", "Indices"],
   strategy: "Price Action / Market Structure",
+  riskApproach: "1% max risk per trade",
+  avgHoldingTime: "2h 45m",
   bio: "Focused on disciplined risk management, market structure and high-probability setups across Forex, Gold and major indices.",
-  avatarInitials: "AM",
+  avatarInitials: brand.trader.avatarInitials,
 };
 
 export const account: Account = {

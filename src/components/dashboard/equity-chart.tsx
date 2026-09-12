@@ -13,7 +13,7 @@ import {
 import type { EquityPoint } from "@/lib/data/types";
 import { formatCompact, formatCurrency, formatDate } from "@/lib/format";
 
-const RANGES = ["1D", "1W", "1M", "3M", "1Y", "ALL"] as const;
+const RANGES = ["1D", "1W", "1M", "3M", "6M", "1Y", "ALL"] as const;
 type Range = (typeof RANGES)[number];
 
 function filterByRange(points: EquityPoint[], range: Range): EquityPoint[] {
@@ -26,6 +26,7 @@ function filterByRange(points: EquityPoint[], range: Range): EquityPoint[] {
     "1W": 7,
     "1M": 30,
     "3M": 90,
+    "6M": 180,
     "1Y": 365,
     ALL: Infinity,
   };
@@ -43,9 +44,24 @@ function ChartTooltip({ active, payload }: { active?: boolean; payload?: { paylo
   return (
     <div className="rounded-[10px] border border-border-default bg-background-elevated px-3 py-2 shadow-xl shadow-black/40">
       <p className="text-[11px] text-muted-2">{formatDate(point.date)}</p>
-      <p className="text-[14px] font-semibold tabular-nums text-foreground">
-        {formatCurrency(point.equity)}
+      <p className="mt-1 flex items-center justify-between gap-4 text-[13px]">
+        <span className="text-muted">Balance</span>
+        <span className="font-semibold tabular-nums text-foreground">
+          {formatCurrency(point.equity)}
+        </span>
       </p>
+      {point.dayPnl !== undefined && (
+        <p className="mt-0.5 flex items-center justify-between gap-4 text-[13px]">
+          <span className="text-muted">Daily P&amp;L</span>
+          <span
+            className={`font-semibold tabular-nums ${
+              point.dayPnl >= 0 ? "text-accent" : "text-negative"
+            }`}
+          >
+            {formatCurrency(point.dayPnl, { signed: true })}
+          </span>
+        </p>
+      )}
     </div>
   );
 }
@@ -75,7 +91,7 @@ export function EquityChart({ data }: { data: EquityPoint[] }) {
           </button>
         ))}
       </div>
-      <div className="h-[280px] w-full">
+      <div className="h-[320px] w-full">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={visible} margin={{ top: 8, right: 4, left: 4, bottom: 0 }}>
             <defs>

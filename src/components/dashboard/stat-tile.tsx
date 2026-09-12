@@ -13,7 +13,7 @@ export function StatTile({
   sublabel?: string;
 }) {
   return (
-    <Card className="p-5">
+    <Card className="p-5 transition-all duration-200 hover:border-border-default hover:-translate-y-[1px]">
       <span className="text-[13px] font-medium text-muted">{label}</span>
       <div
         className={cn(

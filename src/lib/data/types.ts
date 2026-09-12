@@ -23,6 +23,7 @@ export interface EquityPoint {
   date: string;
   label: string;
   equity: number;
+  dayPnl?: number;
 }
 
 export interface MonthlyStat {
@@ -46,6 +47,8 @@ export interface Trader {
   tradingSince: number;
   markets: string[];
   strategy: string;
+  riskApproach: string;
+  avgHoldingTime: string;
   bio: string;
   avatarInitials: string;
 }

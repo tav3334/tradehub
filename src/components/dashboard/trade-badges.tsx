@@ -5,23 +5,24 @@ import type { Direction, TradeStatus } from "@/lib/data/types";
 export function DirectionBadge({ direction }: { direction: Direction }) {
   const isLong = direction === "Long";
   return (
-    <span
-      className={`inline-flex items-center gap-1 text-[12.5px] font-medium ${
-        isLong ? "text-accent" : "text-negative"
-      }`}
+    <Badge
+      variant={isLong ? "outline-positive" : "outline-negative"}
+      className="gap-1 uppercase"
     >
       {isLong ? (
-        <ArrowUpRight className="h-3.5 w-3.5" />
+        <ArrowUpRight className="h-3 w-3" />
       ) : (
-        <ArrowDownRight className="h-3.5 w-3.5" />
+        <ArrowDownRight className="h-3 w-3" />
       )}
       {direction}
-    </span>
+    </Badge>
   );
 }
 
 export function StatusBadge({ status }: { status: TradeStatus }) {
   return (
-    <Badge variant={status === "Win" ? "positive" : "negative"}>{status}</Badge>
+    <Badge variant={status === "Win" ? "positive" : "negative"} className="uppercase">
+      {status}
+    </Badge>
   );
 }

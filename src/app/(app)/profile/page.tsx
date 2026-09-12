@@ -1,12 +1,15 @@
-import { MapPin, CalendarClock, LineChart as LineChartIcon, ShieldCheck } from "lucide-react";
+import { MapPin, CalendarClock, LineChart as LineChartIcon, ShieldCheck, FlaskConical } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { StatTile } from "@/components/dashboard/stat-tile";
 import { EquityChart } from "@/components/dashboard/equity-chart";
 import { MonthlyReturnsTable } from "@/components/dashboard/monthly-returns-table";
+import { TraderInfoGrid } from "@/components/dashboard/trader-info-grid";
+import { TraderCtaCard } from "@/components/dashboard/trader-cta-card";
 import { account, equityCurve, monthlyStats, trader } from "@/lib/data";
-import { formatPercent } from "@/lib/format";
+import { brand } from "@/lib/brand";
+import { formatNumber, formatPercent } from "@/lib/format";
 
 export default function ProfilePage() {
   return (
@@ -20,14 +23,20 @@ export default function ProfilePage() {
                 <AvatarFallback className="text-[22px]">{trader.avatarInitials}</AvatarFallback>
               </Avatar>
               <div className="pb-1">
-                <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center gap-2">
                   <h1 className="text-[20px] font-semibold tracking-tight text-foreground">
                     {trader.name}
                   </h1>
                   <Badge variant="positive" className="gap-1">
                     <ShieldCheck className="h-3 w-3" />
-                    Verified Performance
+                    Performance Verified
                   </Badge>
+                  {brand.isDemo && (
+                    <Badge variant="default" className="gap-1">
+                      <FlaskConical className="h-3 w-3" />
+                      Demo profile
+                    </Badge>
+                  )}
                 </div>
                 <p className="mt-0.5 text-[13.5px] text-muted">{trader.role}</p>
               </div>
@@ -59,7 +68,7 @@ export default function ProfilePage() {
         </CardContent>
       </Card>
 
-      <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
+      <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
         <StatTile
           label="Total Return"
           value={formatPercent(account.totalProfitPct, { signed: true })}
@@ -72,6 +81,11 @@ export default function ProfilePage() {
           value={`-${formatPercent(account.maxDrawdownPct)}`}
           tone="negative"
         />
+        <StatTile
+          label="Total Trades"
+          value={formatNumber(account.totalTrades)}
+          tone="neutral"
+        />
       </div>
 
       <Card className="mt-6">
@@ -83,11 +97,24 @@ export default function ProfilePage() {
         </CardContent>
       </Card>
 
+      <div className="mt-6">
+        <h2 className="mb-3 text-[15px] font-semibold tracking-tight text-foreground">
+          Trader Information
+        </h2>
+        <TraderInfoGrid
+          strategy={trader.strategy}
+          markets={trader.markets}
+          riskApproach={trader.riskApproach}
+          avgHoldingTime={trader.avgHoldingTime}
+          tradingSince={trader.tradingSince}
+        />
+      </div>
+
       <Card className="mt-6">
         <CardHeader>
           <div>
-            <CardTitle>Performance Overview</CardTitle>
-            <CardDescription>Equity growth since account inception</CardDescription>
+            <CardTitle>Performance History</CardTitle>
+            <CardDescription>Account growth over time</CardDescription>
           </div>
         </CardHeader>
         <CardContent>
@@ -104,9 +131,13 @@ export default function ProfilePage() {
         </CardContent>
       </Card>
 
+      <div className="mt-6">
+        <TraderCtaCard traderName={trader.name} />
+      </div>
+
       <p className="mt-6 text-center text-[11.5px] text-muted-2">
-        Verified Performance is a demo UI element only and does not represent an independently
-        audited track record.
+        This profile uses demo data for illustration. &ldquo;Performance Verified&rdquo; is a UI
+        element only and does not represent an independently audited track record.
       </p>
     </div>
   );

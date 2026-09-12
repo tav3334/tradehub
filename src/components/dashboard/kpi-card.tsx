@@ -15,7 +15,7 @@ interface KpiCardProps {
 
 export function KpiCard({ label, value, change, icon: Icon, accent = "neutral" }: KpiCardProps) {
   return (
-    <Card className="p-5 transition-colors hover:border-border-default">
+    <Card className="p-5 transition-all duration-200 hover:border-border-default hover:shadow-[0_1px_2px_rgba(0,0,0,0.24),0_12px_28px_-14px_rgba(0,0,0,0.5)] hover:-translate-y-[1px]">
       <div className="flex items-start justify-between">
         <span className="text-[13px] font-medium text-muted">{label}</span>
         <div

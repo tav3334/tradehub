@@ -15,6 +15,7 @@ import {
   monthlyStats,
   previousPeriod,
   totalTrades,
+  trader,
   trades,
 } from "@/lib/data";
 import { formatCurrency, formatPercent, formatR } from "@/lib/format";
@@ -23,10 +24,14 @@ export default function DashboardPage() {
   const recentTrades = [...trades]
     .sort((a, b) => (a.date < b.date ? 1 : -1))
     .slice(0, 6);
+  const firstName = trader.name.split(" ")[0];
 
   return (
     <div className="animate-fade-in">
-      <PageHeader title="Good morning, Alex" subtitle="Here’s your trading performance overview." />
+      <PageHeader
+        title={`Good morning, ${firstName}`}
+        subtitle="Here’s your trading performance overview."
+      />
 
       {/* KPI Cards */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">

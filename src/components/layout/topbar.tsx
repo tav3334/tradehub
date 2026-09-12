@@ -1,13 +1,11 @@
 "use client";
 
-import Link from "next/link";
 import { Menu } from "lucide-react";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { SearchDialog } from "./search-dialog";
 import { Notifications } from "./notifications";
 import { DateRangeSelect } from "./date-range-select";
 import { AccountSelect } from "./account-select";
-import { trader } from "@/lib/data";
+import { ProfileMenu } from "./profile-menu";
 import { Logo } from "./logo";
 
 export function TopBar({ onMenuClick }: { onMenuClick?: () => void }) {
@@ -37,11 +35,7 @@ export function TopBar({ onMenuClick }: { onMenuClick?: () => void }) {
           <AccountSelect />
         </div>
         <Notifications />
-        <Link href="/profile" className="ml-1">
-          <Avatar className="h-8 w-8 border border-border-default">
-            <AvatarFallback className="text-[12px]">{trader.avatarInitials}</AvatarFallback>
-          </Avatar>
-        </Link>
+        <ProfileMenu />
       </div>
     </header>
   );

@@ -88,7 +88,7 @@ export function MobileDrawer({
                 <span className="text-[13px] font-medium text-foreground">{trader.name}</span>
                 <span className="flex items-center gap-1 text-[11.5px] text-muted">
                   <ShieldCheck className="h-3 w-3 text-accent" />
-                  Pro Trader
+                  {trader.role}
                 </span>
               </div>
             </Link>

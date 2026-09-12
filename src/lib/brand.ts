@@ -4,16 +4,16 @@
  * individual components or pages.
  */
 export const brand = {
-  productName: "TradeHub",
-  productNameShort: "TH",
-  tagline: "Trading Performance Hub",
+  productName: "ProfiteLab",
+  productNameShort: "PL",
+  tagline: "Trading Performance Platform",
   description:
-    "A premium trading performance dashboard for tracking equity growth, risk metrics, and trade history.",
+    "ProfiteLab is a trading-focused platform built around disciplined execution, performance tracking and transparent analytics.",
 
   trader: {
-    name: "Alex Morgan",
+    name: "Hatim",
     role: "Professional Trader",
-    avatarInitials: "AM",
+    avatarInitials: "H",
     avatarUrl: undefined as string | undefined,
   },
 

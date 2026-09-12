@@ -43,7 +43,6 @@ export interface DayPnl {
 export interface Trader {
   name: string;
   role: string;
-  location: string;
   tradingSince: number;
   markets: string[];
   strategy: string;

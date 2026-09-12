@@ -15,11 +15,10 @@ import {
 export const trader: Trader = {
   name: brand.trader.name,
   role: brand.trader.role,
-  location: "London, UK",
   tradingSince: 2019,
   markets: ["Forex", "Gold", "Indices"],
   strategy: "Price Action / Market Structure",
-  riskApproach: "1% max risk per trade",
+  riskApproach: "Disciplined Risk Management",
   avgHoldingTime: "2h 45m",
   bio: "Focused on disciplined risk management, market structure and high-probability setups across Forex, Gold and major indices.",
   avatarInitials: brand.trader.avatarInitials,

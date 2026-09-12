@@ -2,8 +2,8 @@ import { cn } from "@/lib/utils";
 import { brand } from "@/lib/brand";
 
 function splitProductName(name: string): [string, string] {
-  // "TradeHub" -> ["Trade", "Hub"]; falls back to splitting at the midpoint
-  // for names without an internal capital.
+  // "ProfiteLab" -> ["Profite", "Lab"]; falls back to splitting at the
+  // midpoint for names without an internal capital.
   const match = name.match(/^([A-Z][a-z0-9]*)([A-Z].*)$/);
   if (match) return [match[1], match[2]];
   const mid = Math.ceil(name.length / 2);

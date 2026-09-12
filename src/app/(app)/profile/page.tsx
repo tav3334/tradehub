@@ -1,4 +1,4 @@
-import { MapPin, CalendarClock, LineChart as LineChartIcon, ShieldCheck, FlaskConical } from "lucide-react";
+import { CalendarClock, LineChart as LineChartIcon, ShieldCheck, FlaskConical } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -39,15 +39,12 @@ export default function ProfilePage() {
                   )}
                 </div>
                 <p className="mt-0.5 text-[13.5px] text-muted">{trader.role}</p>
+                <p className="mt-0.5 text-[13.5px] font-medium text-accent">{brand.productName}</p>
               </div>
             </div>
           </div>
 
           <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-border-subtle pt-4">
-            <span className="flex items-center gap-1.5 text-[13px] text-muted">
-              <MapPin className="h-3.5 w-3.5 text-muted-2" />
-              {trader.location}
-            </span>
             <span className="flex items-center gap-1.5 text-[13px] text-muted">
               <CalendarClock className="h-3.5 w-3.5 text-muted-2" />
               Trading since {trader.tradingSince}
@@ -97,9 +94,18 @@ export default function ProfilePage() {
         </CardContent>
       </Card>
 
+      <Card className="mt-6">
+        <CardHeader>
+          <CardTitle>About {brand.productName}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-[14px] leading-relaxed text-muted">{brand.description}</p>
+        </CardContent>
+      </Card>
+
       <div className="mt-6">
         <h2 className="mb-3 text-[15px] font-semibold tracking-tight text-foreground">
-          Trader Information
+          Trading Information
         </h2>
         <TraderInfoGrid
           strategy={trader.strategy}
@@ -114,7 +120,7 @@ export default function ProfilePage() {
         <CardHeader>
           <div>
             <CardTitle>Performance History</CardTitle>
-            <CardDescription>Account growth over time</CardDescription>
+            <CardDescription>Trading performance overview</CardDescription>
           </div>
         </CardHeader>
         <CardContent>
@@ -132,7 +138,7 @@ export default function ProfilePage() {
       </Card>
 
       <div className="mt-6">
-        <TraderCtaCard traderName={trader.name} />
+        <TraderCtaCard traderName={trader.name} productName={brand.productName} />
       </div>
 
       <p className="mt-6 text-center text-[11.5px] text-muted-2">
